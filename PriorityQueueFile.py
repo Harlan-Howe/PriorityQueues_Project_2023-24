@@ -4,16 +4,16 @@ from typing import List, TypeVar, Generic, Tuple
 T = TypeVar("T")
 
 show_debug_messages = False
+Node = Tuple[int, T]
 
 
 class PriorityQueue (Generic[T]):
-    Node = Tuple[int,T]
-    def __init__(self, tree:List[Node]=[], isMinHeap:bool=True):
-        self.my_tree:List["Node"] = []
+
+    def __init__(self, tree: List[Node]= [], isMinHeap: bool=True):
+        self.my_tree: List[Node] = []
         for n in tree:
             self.my_tree.append(n)
         self.is_min_heap = isMinHeap
-
 
     def node_at_index(self, index:int) -> Node:
         """
@@ -27,7 +27,7 @@ class PriorityQueue (Generic[T]):
             return self.my_tree[index]
         raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}")
 
-    def set_node_at_index(self, in_node:Node, index:int):
+    def set_node_at_index(self, in_node: Node, index: int):
         """
         changes the node at index to in_node and returns the old node.
         :param in_node: the new node to be stored in this location.
@@ -42,7 +42,8 @@ class PriorityQueue (Generic[T]):
             return old_node
         raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}")
 
-    def left_child_of_index(self, index:int) -> int:
+    @staticmethod
+    def left_child_of_index(index: int) -> int:
         """
         gives the index of the tree that is directly below and to the left of the given index.
         Note: the index may be out of bounds.
@@ -51,7 +52,8 @@ class PriorityQueue (Generic[T]):
         """
         return 2 * index + 1
 
-    def right_child_of_index(self, index: int) -> int:
+    @staticmethod
+    def right_child_of_index(index: int) -> int:
         """
         gives the index of the tree that is directly below and to the right of the given index.
         Note: the index may be out of bounds.
@@ -60,7 +62,8 @@ class PriorityQueue (Generic[T]):
         """
         return 2 * index + 2
 
-    def parent_of_index(self, index: int) -> int:
+    @staticmethod
+    def parent_of_index(index: int) -> int:
         """
         gives the index of the tree that is the parent of the given index
         :param index:
@@ -192,7 +195,7 @@ class PriorityQueue (Generic[T]):
         """
         self.my_tree = []
 
-    def is_a_heap(self)->bool:
+    def is_a_heap(self) -> bool:
         """
         checks whether the self.my_tree variable holds a representation that is a heap. Any tree is considered a heap
         until you find a child that has greater priority than its parent.
@@ -220,7 +223,7 @@ class PriorityQueue (Generic[T]):
         if show_debug_messages:
             print("-" * 128)
             print(f"Adding: [{priority = }, {value = }]")
-        self.my_tree.append([priority, value])  # makes a new, 2-element list and adds it to the main array.
+        self.my_tree.append((priority, value))  # makes a new, 2-element list and adds it to the main array.
         self.heapify_up(len(self) - 1)
         if show_debug_messages:
             print(self)
@@ -281,7 +284,6 @@ class PriorityQueue (Generic[T]):
             pass
             # ----------------------
             # TODO: You'll be writing this part! Insert your code here.
-
 
             # ----------------------
         # Since this tree is complete, we don't need to worry about the right node if the
