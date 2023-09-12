@@ -25,7 +25,7 @@ class PriorityQueue (Generic[T]):
         """
         if self.in_bounds(index):
             return self.my_tree[index]
-        raise IndexError("Index {0} is out of bounds for tree of size {1}".format(index, len(self)))
+        raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}"
 
     def set_node_at_index(self, in_node:Node, index:int):
         """
@@ -40,7 +40,7 @@ class PriorityQueue (Generic[T]):
             old_node = self.my_tree[index]
             self.my_tree[index] = in_node
             return old_node
-        raise IndexError("Index {0} is out of bounds for tree of size {1}".format(index, len(self)))
+        raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}"
 
     def left_child_of_index(self, index:int) -> int:
         """
@@ -121,8 +121,9 @@ class PriorityQueue (Generic[T]):
         items_per_row = 1
         items_in_current_row = 0
         for item in self.my_tree:
-            block = "{0}:{1}".format(item[0], item[1])
-            result += "{0}{1}{0}".format(" " * int(spaces_per_item - (len(block)) / 2), block)
+            block = f"{item[0]}:{item[1]}"
+            whitespace = " " * int(spaces_per_item - (len(block)) / 2)
+            result += f"{whitespace}{block}{whitespace}"
             items_in_current_row += 1
             if items_in_current_row == items_per_row:
                 items_in_current_row = 0
@@ -172,6 +173,18 @@ class PriorityQueue (Generic[T]):
                 spaces_per_item /= 2
                 result += "\n"
             counter+=1
+        return result
+
+    def to_string_as_list(self):
+        """
+        creates a string that has one node per line, listed with an index.
+        :return:  string with a linear interpretation of the self.tree. Mostly useful for debugging.
+        """
+        if len(self) == 0:
+            return "Empty."
+        result = ""
+        for i in range(len(self)):
+            result+= f"{i}:\t{self.my_tree[i]}\n"
         return result
 
     def clear(self):
