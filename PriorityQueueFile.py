@@ -25,7 +25,7 @@ class PriorityQueue (Generic[T]):
         """
         if self.in_bounds(index):
             return self.my_tree[index]
-        raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}"
+        raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}")
 
     def set_node_at_index(self, in_node:Node, index:int):
         """
@@ -40,7 +40,7 @@ class PriorityQueue (Generic[T]):
             old_node = self.my_tree[index]
             self.my_tree[index] = in_node
             return old_node
-        raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}"
+        raise IndexError(f"Index {index} is out of bounds for tree of size {len(self)}")
 
     def left_child_of_index(self, index:int) -> int:
         """
@@ -51,7 +51,7 @@ class PriorityQueue (Generic[T]):
         """
         return 2 * index + 1
 
-    def right_child_of_index(self, index:int )->int:
+    def right_child_of_index(self, index: int) -> int:
         """
         gives the index of the tree that is directly below and to the right of the given index.
         Note: the index may be out of bounds.
@@ -60,7 +60,7 @@ class PriorityQueue (Generic[T]):
         """
         return 2 * index + 2
 
-    def parent_of_index(self, index:int)->int:
+    def parent_of_index(self, index: int) -> int:
         """
         gives the index of the tree that is the parent of the given index
         :param index:
@@ -71,7 +71,7 @@ class PriorityQueue (Generic[T]):
     def __len__(self):
         return len(self.my_tree)
 
-    def in_bounds(self, index:int)->bool:
+    def in_bounds(self, index: int) -> bool:
         """
         indicates whether index is within the size of this tree
         :param index:
@@ -87,7 +87,7 @@ class PriorityQueue (Generic[T]):
         """
         return self.in_bounds(self.left_child_of_index(index))
 
-    def has_right_child(self, index:int) -> bool:
+    def has_right_child(self, index: int) -> bool:
         """
         indicates whether the node at this index has a child to the right
         :param index:
@@ -95,7 +95,7 @@ class PriorityQueue (Generic[T]):
         """
         return self.in_bounds(self.right_child_of_index(index))
 
-    def a_has_priority_over_b(self, a:Node, b:Node)->bool:
+    def a_has_priority_over_b(self, a: Node, b: Node) -> bool:
         """
         Determines whether the node "a" has priority over node "b." This is determined by the priorities of "a" and "b" and
         by self.is_min_heap - i.e, should the higher node prevail, or the lower node?
@@ -105,7 +105,7 @@ class PriorityQueue (Generic[T]):
             return a[0] < b[0]
         return a[0] > b[0]
 
-    def is_empty(self)->bool:
+    def is_empty(self) -> bool:
         return len(self) == 0
 
     def __str__(self):
@@ -114,7 +114,7 @@ class PriorityQueue (Generic[T]):
         ( you are welcome to examine this code, but you are not responsible for it.)
         :return:
         """
-        spaces_per_item = 2 ** ((int)(
+        spaces_per_item = 2 ** (int(
             math.log(len(self)) / math.log(2)) + 2)  # sneaky code to make the tree only as wide as needed.
         result = "-" * (spaces_per_item * 2)
         result += "\n"
@@ -135,7 +135,7 @@ class PriorityQueue (Generic[T]):
     def __repr__(self):
         return self.__str__()
 
-    def to_color_string(self, indices_to_color:List[int]=[]):
+    def to_color_string(self, indices_to_color: List[int] = []):
         """
         Draws a string representation of this tree, without changing it. For all items in the indices list,
         they will show up in a different color.
@@ -146,9 +146,7 @@ class PriorityQueue (Generic[T]):
         starters = ["\u001b[31m","\u001b[32m","\u001b[33m","\u001b[34m","\u001b[35m","\u001b[36m"]
         reset = "\u001b[0m"
 
-
-
-        spaces_per_item = 2 ** ((int)(
+        spaces_per_item = 2 ** (int(
             math.log(len(self)) / math.log(2)) + 2)  # sneaky code to make the tree only as wide as needed.
         result = "-" * (spaces_per_item * 2)
         result += "\n"
@@ -172,7 +170,7 @@ class PriorityQueue (Generic[T]):
                 items_per_row *= 2
                 spaces_per_item /= 2
                 result += "\n"
-            counter+=1
+            counter += 1
         return result
 
     def to_string_as_list(self):
@@ -184,7 +182,7 @@ class PriorityQueue (Generic[T]):
             return "Empty."
         result = ""
         for i in range(len(self)):
-            result+= f"{i}:\t{self.my_tree[i]}\n"
+            result += f"{i}:\t{self.my_tree[i]}\n"
         return result
 
     def clear(self):
@@ -207,7 +205,7 @@ class PriorityQueue (Generic[T]):
 
             # ----------------------
             index += 1
-        if (show_debug_messages):
+        if show_debug_messages:
             print("This is a heap.")
         return True
 
@@ -219,12 +217,12 @@ class PriorityQueue (Generic[T]):
         :param priority: its relative weight
         :return None:
         """
-        if (show_debug_messages):
+        if show_debug_messages:
             print("-" * 128)
             print(f"Adding: [{priority = }, {value = }]")
         self.my_tree.append([priority, value])  # makes a new, 2-element list and adds it to the main array.
         self.heapify_up(len(self) - 1)
-        if (show_debug_messages):
+        if show_debug_messages:
             print(self)
 
     def heapify_up(self, index:int):
@@ -245,7 +243,7 @@ class PriorityQueue (Generic[T]):
         """
         Gives the node at the start of this Priority Queue without removing it.
         """
-        if self.isEmpty():
+        if self.is_empty():
             raise IndexError("Attempted to peek at an empty Queue.")
         return self.my_tree[0]
 
@@ -256,14 +254,14 @@ class PriorityQueue (Generic[T]):
         """
         if self.is_empty():
             raise IndexError("Attempted to pop from an empty Queue.")
-        result:"Node" = self.my_tree[0]
+        result: "Node" = self.my_tree[0]
         self.my_tree[0] = self.my_tree[-1]
         del (self.my_tree[-1])
-        if (show_debug_messages):
+        if show_debug_messages:
             print("*" * 128)
             print("Just popped {result}")
         self.heapify_down()
-        if (show_debug_messages):
+        if show_debug_messages:
             print(self)
         return result
 
@@ -276,9 +274,9 @@ class PriorityQueue (Generic[T]):
         """
         if not self.in_bounds(index):
             return
-        current_node:"Node" = self.node_at_index(index)
-        left_index:int = self.left_child_of_index(index)
-        right_index:int = self.right_child_of_index(index)
+        current_node: "Node" = self.node_at_index(index)
+        left_index: int = self.left_child_of_index(index)
+        right_index: int = self.right_child_of_index(index)
         if self.in_bounds(left_index):
             pass
             # ----------------------

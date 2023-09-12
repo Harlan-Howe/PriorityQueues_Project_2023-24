@@ -5,6 +5,7 @@ class MyTestCase(unittest.TestCase):
         # 1/8 Testing a bad heap.
         npq:PriorityQueue[str] = PriorityQueue[str](tree = [[3, "A"], [4, "B"], [5, "C"], [2, "D"]])
         print(npq)  # demo - how to draw what this heap "looks like"
+        print(npq.to_string_as_list())
         self.assertFalse(npq.is_a_heap(), "Did not recognize a bad heap.")
 
 
