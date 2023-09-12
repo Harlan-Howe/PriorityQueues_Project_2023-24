@@ -1,19 +1,22 @@
 import math
 from typing import List, TypeVar, Generic, Tuple
+import logging
 
 T = TypeVar("T")
 
-show_debug_messages = False
-Node = Tuple[int, T]
-
+logging.basicConfig(level=logging.INFO) # simple version to the output console
+# logging.basicConfig(level=logging.DEBUG, filename=f"log {datetime.datetime.now():%m-%d@%H:%M:%S}.txt",
+#                     format="%(asctime)s %(levelname)s %(message)s",
+#                     datefmt="%H:%M:%S %p --- ")  # more robust, sent to a file cNode = Tuple[int, T]
+Node = Tuple[int,T]
 
 class PriorityQueue (Generic[T]):
 
-    def __init__(self, tree: List[Node]= [], isMinHeap: bool=True):
+    def __init__(self, tree: List[Node] = [], is_min_heap: bool = True):
         self.my_tree: List[Node] = []
         for n in tree:
             self.my_tree.append(n)
-        self.is_min_heap = isMinHeap
+        self.is_min_heap = is_min_heap
 
     def node_at_index(self, index:int) -> Node:
         """
@@ -208,8 +211,7 @@ class PriorityQueue (Generic[T]):
 
             # ----------------------
             index += 1
-        if show_debug_messages:
-            print("This is a heap.")
+        logging.info("This is a heap.")
         return True
 
     def add_value(self, value:T, priority:int=1):
@@ -220,13 +222,11 @@ class PriorityQueue (Generic[T]):
         :param priority: its relative weight
         :return None:
         """
-        if show_debug_messages:
-            print("-" * 128)
-            print(f"Adding: [{priority = }, {value = }]")
+        logging.info("-" * 128)
+        logging.info(f"Adding: [{priority = }, {value = }]")
         self.my_tree.append((priority, value))  # makes a new, 2-element list and adds it to the main array.
         self.heapify_up(len(self) - 1)
-        if show_debug_messages:
-            print(self)
+        logging.info(self)
 
     def heapify_up(self, index:int):
         """
@@ -260,12 +260,10 @@ class PriorityQueue (Generic[T]):
         result: "Node" = self.my_tree[0]
         self.my_tree[0] = self.my_tree[-1]
         del (self.my_tree[-1])
-        if show_debug_messages:
-            print("*" * 128)
-            print("Just popped {result}")
+        logging.info("*" * 128)
+        logging.info("Just popped {result}")
         self.heapify_down()
-        if show_debug_messages:
-            print(self)
+        logging.info(self)
         return result
 
     def heapify_down(self, index:int=0):
