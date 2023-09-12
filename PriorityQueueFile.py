@@ -4,11 +4,12 @@ import logging
 
 T = TypeVar("T")
 
-logging.basicConfig(level=logging.INFO) # simple version to the output console
+logging.basicConfig(level=logging.INFO)  # simple version to the output console
 # logging.basicConfig(level=logging.DEBUG, filename=f"log {datetime.datetime.now():%m-%d@%H:%M:%S}.txt",
 #                     format="%(asctime)s %(levelname)s %(message)s",
 #                     datefmt="%H:%M:%S %p --- ")  # more robust, sent to a file cNode = Tuple[int, T]
-Node = Tuple[int,T]
+Node = Tuple[int, T]
+
 
 class PriorityQueue (Generic[T]):
 
@@ -18,7 +19,7 @@ class PriorityQueue (Generic[T]):
             self.my_tree.append(n)
         self.is_min_heap = is_min_heap
 
-    def node_at_index(self, index:int) -> Node:
+    def node_at_index(self, index: int) -> Node:
         """
         gives the value stored in node at index
         :param index: location in the tree
@@ -51,7 +52,7 @@ class PriorityQueue (Generic[T]):
         gives the index of the tree that is directly below and to the left of the given index.
         Note: the index may be out of bounds.
         :param index:
-        :return index of left child of node at index
+        :return: index of left child of node at index
         """
         return 2 * index + 1
 
@@ -61,7 +62,7 @@ class PriorityQueue (Generic[T]):
         gives the index of the tree that is directly below and to the right of the given index.
         Note: the index may be out of bounds.
         :param index:
-        :return index of right child of node at index
+        :return: index of right child of node at index
         """
         return 2 * index + 2
 
@@ -83,9 +84,9 @@ class PriorityQueue (Generic[T]):
         :param index:
         :return:
         """
-        return index >= 0 and index < len(self)
+        return 0 <= index < len(self)
 
-    def has_left_child(self, index:int) -> bool:
+    def has_left_child(self, index: int) -> bool:
         """
         indicates whether the node at this index has a child to the left
         :param index:
@@ -103,8 +104,8 @@ class PriorityQueue (Generic[T]):
 
     def a_has_priority_over_b(self, a: Node, b: Node) -> bool:
         """
-        Determines whether the node "a" has priority over node "b." This is determined by the priorities of "a" and "b" and
-        by self.is_min_heap - i.e, should the higher node prevail, or the lower node?
+        Determines whether the node "a" has priority over node "b." This is determined by the priorities of "a" and "b"
+        and by self.is_min_heap - i.e, should the higher node prevail, or the lower node?
         If the values are equal, then we _do not_ say that the "a" node has priority.
         """
         if self.is_min_heap:
@@ -149,7 +150,7 @@ class PriorityQueue (Generic[T]):
         ( you are welcome to examine this code, but you are not responsible for it.)
         :return:
         """
-        starters = ["\u001b[31m","\u001b[32m","\u001b[33m","\u001b[34m","\u001b[35m","\u001b[36m"]
+        starters = ["\u001b[31m", "\u001b[32m", "\u001b[33m", "\u001b[34m", "\u001b[35m", "\u001b[36m"]
         reset = "\u001b[0m"
 
         spaces_per_item = 2 ** (int(
@@ -163,7 +164,7 @@ class PriorityQueue (Generic[T]):
             block = f"{item[0]}:{item[1]}"
             num_spaces = int(spaces_per_item - (len(block)) / 2)
             if counter in indices_to_color:
-                col_num = indices_to_color.index(counter)%len(starters)
+                col_num = indices_to_color.index(counter) % len(starters)
                 result += starters[col_num]
                 result += f"{' ' * num_spaces}{block}{' ' * num_spaces}"
                 result += reset
@@ -214,7 +215,7 @@ class PriorityQueue (Generic[T]):
         logging.info("This is a heap.")
         return True
 
-    def add_value(self, value:T, priority:int=1):
+    def add_value(self, value: T, priority: int = 1):
         """
         adds a node to this data structure and makes sure that the my_tree data structure is
         still a heap.
@@ -228,7 +229,7 @@ class PriorityQueue (Generic[T]):
         self.heapify_up(len(self) - 1)
         logging.info(self)
 
-    def heapify_up(self, index:int):
+    def heapify_up(self, index: int):
         """
         given the index, potentially swaps itself with its parent, and onward up the tree
         as needed to make this a heap.
@@ -266,7 +267,7 @@ class PriorityQueue (Generic[T]):
         logging.info(self)
         return result
 
-    def heapify_down(self, index:int=0):
+    def heapify_down(self, index: int = 0):
         """
         The node at index is possibly too high in the tree; we compare it to its children and potentially swap
         it with one of them to put it in better order, and repeat with the node in its new location.
