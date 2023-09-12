@@ -38,8 +38,8 @@ class MyTestCase(unittest.TestCase):
                             "equal children, the choice should be to swap left.")
 
         self.assertEqual(expected, pq.my_tree,
-                         "When confronted with the need to swap with one of two equal children, the choice should be "
-                         "to swap left.")
+                         "When confronted with the need to swap with one of two equal children, the choice should "
+                         "be to swap left.")
 
     def test_heapify_Down_3(self):
         """
@@ -68,8 +68,8 @@ class MyTestCase(unittest.TestCase):
 
         pq.heapify_down(4)
         self.assertEqual(items, pq.my_tree,
-                         "heapifying down between a parent and two children all with same priority should not change "
-                         "anything.")
+                         "heapifying down between a parent and two children all with same priority "
+                         "should not change anything.")
 
     def test_heapify_Down_5(self):
         """
@@ -123,11 +123,12 @@ class MyTestCase(unittest.TestCase):
             sorted_items.append(pq.pop())
 
         self.assertEqual(expected_sorted, sorted_items,
-                         f"Items were not removed in correct order.\n{expected_sorted = }\n{         sorted_items = }")
+                         f"Items were not removed in correct order.\n{expected_sorted = }\n"
+                         f"{         sorted_items = }")
 
     def test_heapify_Down_7(self):
         """
-        tests whether heapify down works correctly with a heap of an even number of items and we are heapifying down to
+        tests whether heapify down works correctly with a heap of an even number of items, and we are heapifying down to
         the right....
         :return:
         """
@@ -141,7 +142,8 @@ class MyTestCase(unittest.TestCase):
 
         pq.heapify_down(index=0)
         self.assertEqual(expected, pq.my_tree,
-                         "Heapify_down for a heap with an even number of nodes where we heapify mostly to the right")
+                         "Heapify_down for a heap with an even number of nodes where we heapify mostly "
+                         "to the right")
 
 
 if __name__ == '__main__':
