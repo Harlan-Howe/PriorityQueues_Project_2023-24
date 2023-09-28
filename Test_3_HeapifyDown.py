@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
         items = [[0, 1], [1, 2], [4, 5], [6, 11], [7, 13], [8, 17], [5, 7], [9, 19], [2, 3]]
         expected = [[0, 1], [1, 2], [4, 5], [2, 3], [7, 13], [8, 17], [5, 7], [9, 19], [6, 11]]
 
-        pq: PriorityQueue[int] = PriorityQueue[int](tree=items, isMinHeap=True)
+        pq: PriorityQueue[int] = PriorityQueue[int](tree=items, is_min_heap=True)
 
         self.assertFalse(pq.is_a_heap(), "This tree should not start as a heap!")
         pq.heapify_down(index=3)
@@ -28,7 +28,7 @@ class MyTestCase(unittest.TestCase):
         expected = [[2, 'Happy'], [7, 'Grumpy'], [5, 'Sneezy'], [11, 'Dopey'], [7, 'Sleepy'], [8, 'Doc'],
                     [6, 'Bashful']]
 
-        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, isMinHeap=True)
+        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, is_min_heap=True)
 
         self.assertFalse(pq.is_a_heap(), "This should not start off as a heap.")
         pq.heapify_down(index=1)
@@ -49,7 +49,7 @@ class MyTestCase(unittest.TestCase):
         items = [[1, "A"], [1, "B"], [1, "C"], [1, "D"], [0, "E"], [1, "F"], [1, "G"], [0, "H"], [0, "I"], [0, "J"],
                  [0, "K"]]
 
-        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, isMinHeap=False)
+        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, is_min_heap=False)
 
         pq.heapify_down(4)
         self.assertEqual(items, pq.my_tree,
@@ -64,7 +64,7 @@ class MyTestCase(unittest.TestCase):
         items = [[1, "A"], [1, "B"], [1, "C"], [1, "D"], [1, "E"], [1, "F"], [1, "G"], [1, "H"], [1, "I"], [1, "J"],
                  [1, "K"]]
 
-        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, isMinHeap=False)
+        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, is_min_heap=False)
 
         pq.heapify_down(4)
         self.assertEqual(items, pq.my_tree,
@@ -92,7 +92,7 @@ class MyTestCase(unittest.TestCase):
                     [18, 'LA'], [9, 'NH'], [39, 'ND'], [8, 'SC'], [20, 'MS'], [19, 'IN'], [43, 'ID'], [2, 'PA'],
                     [14, 'VT'], [11, 'NY']]
 
-        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, isMinHeap=False)
+        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, is_min_heap=False)
 
         # print(pq.to_color_string())
         self.assertFalse(pq.is_a_heap(), "The queue should not initially show up as a heap!")
@@ -101,7 +101,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(pq.my_tree, expected, "The tree did not wind up with the correct order.")
 
     def test_heapify_Down_6(self):
-        pq: PriorityQueue[str] = PriorityQueue[str](isMinHeap=True)
+        pq: PriorityQueue[str] = PriorityQueue[str](is_min_heap=True)
         items = [[0, "AB"], [7, "CD"], [3, "EF"], [4, "GH"], [8, "IJ"], [10, "KL"], [5, "MN"], [13, "OP"], [6, "QR"],
                  [12, "ST"], [2, "UV"], [1, "WX"], [9, "YZ"]]
         items_after_pop = [[1, 'WX'], [2, 'UV'], [3, 'EF'], [6, 'QR'], [4, 'GH'], [9, 'YZ'], [5, 'MN'], [13, 'OP'],
@@ -138,7 +138,7 @@ class MyTestCase(unittest.TestCase):
         expected = [[1, 'Choir'], [2, 'Dance'], [3, 'Ceram'], [9, 'Theat'], [5, 'Photo'], [7, 'Film'], [4, 'Band'],
                     [13, 'Orch'], [11, 'ChTh'], [14, 'MxMd'], [8, 'DrwPt'], [10, 'Tech'], [12, 'Sclp'], [6, 'Jrnl']]
 
-        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, isMinHeap=True)
+        pq: PriorityQueue[str] = PriorityQueue[str](tree=items, is_min_heap=True)
 
         pq.heapify_down(index=0)
         self.assertEqual(expected, pq.my_tree,

@@ -6,7 +6,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_heap_add_1(self):
         # creating a min heap
-        pq = PriorityQueue(isMinHeap=True)
+        pq = PriorityQueue(is_min_heap=True)
         items = [[0, "AB"], [7, "CD"], [3, "EF"], [4, "GH"], [8, "IJ"], [10, "KL"], [5, "MN"], [13, "OP"], [6, "QR"],
                  [12, "ST"], [2, "UV"], [1, "WX"], [9, "YZ"]]
 
@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_heap_add_2(self):
         # creating a max heap
-        pq = PriorityQueue(isMinHeap=False)
+        pq = PriorityQueue(is_min_heap=False)
         items = [[0, "AB"], [7, "CD"], [3, "EF"], [4, "GH"], [8, "IJ"], [10, "KL"], [5, "MN"], [13, "OP"], [6, "QR"],
                  [12, "ST"],
                  [2, "UV"], [1, "WX"], [9, "YZ"]]
@@ -35,7 +35,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_heap_add_3(self):
         # creating a min heap with duplicate priorities
-        pq = PriorityQueue(isMinHeap=True)
+        pq = PriorityQueue(is_min_heap=True)
         items = [[3, "ZY"], [2, "XW"], [4, "VU"], [1, "TS"], [2, "RQ"]]
 
         distractor = [[1, 'TS'], [2, 'RQ'], [4, 'VU'], [3, 'ZY'], [2, 'XW']]
