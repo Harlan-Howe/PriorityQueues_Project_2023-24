@@ -13,19 +13,19 @@ class MyTestCase(unittest.TestCase):
     def test_heap_2(self):
         # 2/8 Testing a min heap.
         pq: PriorityQueue[str] = PriorityQueue[str](tree=[[0, "a"], [1, "b"], [2, "c"], [3, "d"], [4, "e"], [5, "f"],
-                                                          [6, "g"], [7, "h"], [8, "i"]], isMinHeap=True)
+                                                          [6, "g"], [7, "h"], [8, "i"]], is_min_heap=True)
         self.assertTrue(pq.is_a_heap(), "Did not recognize a min heap.")
 
     def test_heap_3(self):
         # 3/8 Testing a max heap.
         pq2: PriorityQueue[str] = PriorityQueue[str](tree=[[12, "a"], [10, "a"], [8, "a"], [6, "a"], [4, "a"], [2, "a"],
-                                                           [0, "a"], [-1, "a"]], isMinHeap=False)
+                                                           [0, "a"], [-1, "a"]], is_min_heap=False)
         self.assertTrue(pq2.is_a_heap(), "Did not recognize a max heap.")
 
     def test_heap_4(self):
         # 4/8 Testing max heap data stored in a min heap.
         pq3: PriorityQueue[str] = PriorityQueue[str](tree=[[12, "a"], [10, "a"], [8, "a"], [6, "a"], [4, "a"], [2, "a"],
-                                                           [0, "a"], [-1, "a"]], isMinHeap=True)
+                                                           [0, "a"], [-1, "a"]], is_min_heap=True)
         self.assertFalse(pq3.is_a_heap(), "Did not recognize a bad min heap composed of max heap data.")
 
     def test_heap_5(self):
@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_heap_7(self):
         # 7/8 Testing a singleton heap.
-        pq6: PriorityQueue[str] = PriorityQueue[str](tree=[[0, "w"]], isMinHeap=False)
+        pq6: PriorityQueue[str] = PriorityQueue[str](tree=[[0, "w"]], is_min_heap=False)
         self.assertTrue(pq6.is_a_heap(), "Did not recognize a singleton heap.")
 
     def test_heap_8(self):
